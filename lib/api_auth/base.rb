@@ -36,6 +36,8 @@ module ApiAuth
       puts "[api_auth] DEBUG >>> !md5_mismatch: #{!md5_mismatch?(request)}"
       puts "[api_auth] DEBUG >>> signatures_match: #{signatures_match?(request, secret_key)}"
       puts "[api_auth] DEBUG >>> !request_too_old: #{!request_too_old?(request)}"
+      result = !md5_mismatch?(request) && signatures_match?(request, secret_key) && !request_too_old?(request)
+      puts "[api_auth] DEBUG >>> authentic: #{result}"
 
       return !md5_mismatch?(request) && signatures_match?(request, secret_key) && !request_too_old?(request)
     end
